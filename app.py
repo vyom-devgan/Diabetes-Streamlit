@@ -27,12 +27,9 @@ def evaluate_model(y_test, y_pred, threshold=5):
     mse = mean_squared_error(y_test, y_pred)
     rmse = np.sqrt(mse)
     r2 = r2_score(y_test, y_pred)
+
     
-    # Calculate accuracy percentage
-    correct_predictions = np.sum(np.abs(y_test - y_pred) <= threshold)
-    accuracy_percentage = (correct_predictions / len(y_test)) * 100
-    
-    return {'MSE': mse, 'RMSE': rmse, 'R²': r2, 'Accuracy (%)': accuracy_percentage}
+    return {'MSE': mse, 'RMSE': rmse, 'R²': r2,}
 
 # Streamlit app starts here
 st.title("Diabetes Progression Prediction App")
@@ -61,7 +58,6 @@ st.subheader("Model Evaluation Metrics")
 st.write(f"MSE: {metrics['MSE']}")
 st.write(f"RMSE: {metrics['RMSE']}")
 st.write(f"R² Score: {metrics['R²']}")
-st.write(f"Accuracy: {metrics['Accuracy (%)']:.2f}%")
 
 # Display actual vs predicted results
 st.subheader("Actual vs Predicted Values")
